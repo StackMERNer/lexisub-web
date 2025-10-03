@@ -3,10 +3,10 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <div className="text-center py-12">
-      <h1 className="text-4xl font-bold text-gray-900 mb-4">
+      <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-50 mb-4">
         Learn Vocabulary from Movies & TV Shows
       </h1>
-      <p className="text-xl text-gray-600 mb-8">
+      <p className="text-xl text-gray-600 mb-8 dark:text-gray-100">
         Upload subtitle files and master new words with spaced repetition
       </p>
 
