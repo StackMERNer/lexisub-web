@@ -12,7 +12,7 @@ export default function Home() {
 
       <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-12">
         <Link href="/upload">
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer">
+          <div className="p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer dark:border dark:border-gray-700">
             <div className="text-4xl mb-4">📤</div>
             <h3 className="text-xl font-semibold mb-2">Upload SRT</h3>
             <p className="text-gray-600">
@@ -22,7 +22,7 @@ export default function Home() {
         </Link>
 
         <Link href="/flashcards">
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer">
+          <div className="p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer dark:border dark:border-gray-700">
             <div className="text-4xl mb-4">🎴</div>
             <h3 className="text-xl font-semibold mb-2">Learn Words</h3>
             <p className="text-gray-600">
@@ -32,7 +32,7 @@ export default function Home() {
         </Link>
 
         <Link href="/progress">
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer">
+          <div className="p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer dark:border dark:border-gray-700">
             <div className="text-4xl mb-4">📊</div>
             <h3 className="text-xl font-semibold mb-2">Track Progress</h3>
             <p className="text-gray-600">
