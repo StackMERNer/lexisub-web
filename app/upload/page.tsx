@@ -4,10 +4,13 @@ import { useState } from 'react'
 import UploadForm from '@/components/UploadForm'
 import { MediaSource } from '@/types'
 import { getMediaSources } from '@/lib/api'
+import axios from 'axios'
 
 export default function UploadPage() {
   const [mediaSources, setMediaSources] = useState<MediaSource[]>([])
   const [loading, setLoading] = useState(false)
+  const [fetchingDefinitions, setFetchingDefinitions] = useState(false)
+  const [definitionMessage, setDefinitionMessage] = useState<string>('')
 
   const loadMediaSources = async () => {
     setLoading(true)
@@ -25,9 +28,40 @@ export default function UploadPage() {
     loadMediaSources()
   }
 
+  const fetchMissingDefinitions = async () => {
+    setFetchingDefinitions(true)
+    setDefinitionMessage('')
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/media/fetch-definitions`
+      )
+      setDefinitionMessage(response.data.message)
+    } catch (error) {
+      console.error('Error fetching definitions:', error)
+      setDefinitionMessage('Error fetching definitions')
+    } finally {
+      setFetchingDefinitions(false)
+    }
+  }
+
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-8">Upload SRT File</h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Upload SRT File</h1>
+        <button
+          onClick={fetchMissingDefinitions}
+          disabled={fetchingDefinitions}
+          className="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition disabled:opacity-50"
+        >
+          {fetchingDefinitions ? 'Fetching...' : 'Fetch Missing Definitions'}
+        </button>
+      </div>
+
+      {definitionMessage && (
+        <div className="mb-4 p-4 bg-blue-50 text-blue-800 rounded-lg">
+          {definitionMessage}
+        </div>
+      )}
 
       <div className="grid lg:grid-cols-2 gap-8">
         <div>
