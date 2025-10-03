@@ -2,10 +2,12 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Logo } from "@/lib/images"
+import { LogoDark, LogoLight } from "@/lib/images"
 import { ModeToggle } from "@/components/ModeToggle"
+import { useTheme } from "next-themes"
 
 export function Header() {
+    const { theme } = useTheme();
     return (
         <nav className="shadow-sm border-b">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,12 +18,20 @@ export function Header() {
                             href="/"
                             className="inline-flex items-center px-1 pt-1 text-lg font-semibold text-primary"
                         >
-                            <Image
-                                src={Logo}
-                                height={40}
-                                width={200}
-                                alt="LexiSub Logo, learn vocabularies before watching."
-                            />
+                            {
+                                theme === 'dark' ? <Image
+                                    src={LogoDark}
+                                    height={40}
+                                    width={200}
+                                    alt="LexiSub Logo, learn vocabularies before watching."
+                                /> : <Image
+                                    src={LogoLight}
+                                    height={40}
+                                    width={200}
+                                    alt="LexiSub Logo, learn vocabularies before watching."
+                                />
+                            }
+
                         </Link>
                         <Link
                             href="/upload"
